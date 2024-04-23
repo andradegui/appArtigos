@@ -48,13 +48,12 @@ create or replace table article(
   PRIMARY KEY (id)
 	
 );
-
 ```
 
 ```
 alter table article
-	add constraint article_user_created_by_fk
-  	foreign key (created_by) references user (id);
+add constraint article_user_created_by_fk
+foreign key (created_by) references user (id);
 ```
     
 
