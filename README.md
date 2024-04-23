@@ -2,13 +2,13 @@
 
 ## Comandos Úteis
 
-- Acessar Gii
+- Acessar Gii:
 
 `http://localhost:8080/?r=gii`
 
 ## Rotas
 
-- Sign Up
+- Sign Up:
 
 `http://localhost:8080/index.php?r=site/sign-up`
 
@@ -31,9 +31,10 @@ create or replace table user(
   primary key (id)
 
 );
-```
 
 ```
+
+`
 create or replace table article(
 
   id int auto_increment,
@@ -45,8 +46,9 @@ create or replace table article(
   created_by int,
   PRIMARY KEY (id)
 	
-);    
-```
+);
+
+`
 
 `alter table article
 	add constraint article_user_created_by_fk
