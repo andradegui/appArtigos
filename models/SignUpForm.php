@@ -4,6 +4,7 @@ namespace app\models;
 
 use yii\base\Model;
 use app\models\User;
+use yii\helpers\VarDumper;
 
 class SignUpForm extends Model{
 
