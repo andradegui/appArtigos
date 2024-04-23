@@ -3,11 +3,13 @@
 ## Comandos Úteis
 
 - Acessar Gii
+
 `http://localhost:8080/?r=gii`
 
 ## Rotas
 
 - Sign Up
+
 `http://localhost:8080/index.php?r=site/sign-up`
 
 ## Comandos p/ banco de dados
@@ -18,7 +20,8 @@
 
 - Criação de tabelas:
 
-`create or replace table user(
+```
+create or replace table user(
 
   id int auto_increment,
   username varchar(55) not null,
@@ -27,9 +30,11 @@
   access_token varchar(255) not null,
   primary key (id)
 
-);`
+);
+```
 
-`create or replace table article(
+```
+create or replace table article(
 
   id int auto_increment,
   title varchar(1024) not null,
@@ -40,7 +45,8 @@
   created_by int,
   PRIMARY KEY (id)
 	
-);`
+);    
+```
 
 `alter table article
 	add constraint article_user_created_by_fk
