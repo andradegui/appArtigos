@@ -16,7 +16,9 @@
 
 - Criação do banco:
 
-`create database artigos;`
+```
+create database artigos;
+```
 
 - Criação de tabelas:
 
@@ -31,10 +33,9 @@ create or replace table user(
   primary key (id)
 
 );
-
 ```
 
-`
+```
 create or replace table article(
 
   id int auto_increment,
@@ -48,11 +49,13 @@ create or replace table article(
 	
 );
 
-`
+```
 
-`alter table article
+```
+alter table article
 	add constraint article_user_created_by_fk
-  	foreign key (created_by) references user (id);`
+  	foreign key (created_by) references user (id);
+```
     
 
 
