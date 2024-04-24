@@ -1,10 +1,11 @@
 <?php
 
-use app\models\Article;
-use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
+use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Article;
+use yii\widgets\ListView;
+use yii\grid\ActionColumn;
 
 /** @var yii\web\View $this */
 /** @var app\models\ArticleSearch $searchModel */
@@ -23,26 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'title',
-            'slug',
-            'body:ntext',
-            'created_at',
-            //'updated_at',
-            //'created_by',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Article $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
-        ],
+        // 'filterModel' => $searchModel,
+        'itemView' => '_article_item'
     ]); ?>
 
 
