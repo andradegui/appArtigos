@@ -10,7 +10,9 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
 ?>
+
 <div class="article-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -26,17 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'slug',
-            'body:ntext',
-            'created_at',
-            'updated_at',
-            'created_by',
-        ],
-    ]) ?>
+
+    <div>
+        <?php echo $model->getEncodedBody(); ?>
+    </div>
 
 </div>
