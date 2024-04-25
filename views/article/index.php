@@ -11,7 +11,7 @@ use yii\grid\ActionColumn;
 /** @var app\models\ArticleSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Articles';
+$this->title = 'Artigos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-index">
