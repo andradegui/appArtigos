@@ -10,7 +10,7 @@ use yii\helpers\StringHelper;
 
 <div class="">
 
-    <a href="<?php echo Url::to(['/article/view', 'id' => $model->id]) ?>">
+    <a href="<?php echo Url::to(['/article/view', 'slug' => $model->slug]) ?>">
 
         <h3><?php echo Html::encode($model->title) ?></h3>
 
