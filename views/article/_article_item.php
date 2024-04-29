@@ -22,6 +22,18 @@ use yii\helpers\StringHelper;
 
     </div>
 
+    <p class="text-muted text-right">
+
+        <small>
+
+            <b>Criado em: <?php echo Yii::$app->formatter->asDateTime($model->created_at) ?></b>
+            <b> | </b>
+            <b>Autor: <?php echo $model->createdBy->username ?></b>
+            
+        </small>
+
+    </p>
+
     <hr>
 
 </div>
