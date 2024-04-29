@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use app\models\Article;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
@@ -31,8 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p class="text-muted">
 
         <small>
-            <b>Criado em: <?php echo Yii::$app->formatter->asDateTime($model->created_at) ?></b>
-            
+            <b>Criado em: <?php echo Yii::$app->formatter->asDateTime($model->created_at) ?></b>          
         </small>
 
     </p>
@@ -41,14 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php if( !Yii::$app->user->isGuest ) : ?>
 
-            <?= Html::a('Update', ['update', 'slug' => $model->slug], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Delete', ['delete', 'slug' => $model->slug], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ]) ?>
+            <?php if( $model->created_by == Yii::$app->user->id ) : ?>
+
+                <?= Html::a('Update', ['update', 'slug' => $model->slug], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Delete', ['delete', 'slug' => $model->slug], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Are you sure you want to delete this item?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+
+            <?php endif; ?>
 
         <?php endif; ?>        
 
