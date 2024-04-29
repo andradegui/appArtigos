@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Article;
-use app\models\ArticleSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\ArticleSearch;
+use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 
 /**
  * ArticleController implements the CRUD actions for Article model.
@@ -21,6 +24,17 @@ class ArticleController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AccessControl::class,
+                    'only' => ['create', 'update', 'delete'],
+                    'rules' => [
+                        [
+                            'actions' => ['create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@']
+                        ]
+                    ]
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -93,6 +107,12 @@ class ArticleController extends Controller
     {
         $model = $this->findModel($slug);
 
+        if( $model->created_by !== Yii::$app->user->id ){
+
+            throw new ForbiddenHttpException('Você não tem permissão de editar este arquivo, pois foi criado por outro usuário.');
+
+        }
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'slug' => $model->slug]);
         }
@@ -111,7 +131,16 @@ class ArticleController extends Controller
      */
     public function actionDelete($slug)
     {
-        $this->findModel($slug)->delete();
+        $model = $this->findModel($slug);
+        // $this->findModel($slug)->delete();
+
+        if( $model->created_by !== Yii::$app->user->id ){
+
+            throw new ForbiddenHttpException('Você não tem permissão de deletar este arquivo, pois foi criado por outro usuário.');
+
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }
